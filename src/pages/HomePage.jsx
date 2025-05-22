@@ -1,5 +1,6 @@
 import { Header } from "../components/Header";
 import "./HomePage.css";
+import CheckMark from "../assets/images/icons/checkmark.png";
 
 export function HomePage() {
   return (
@@ -51,7 +52,7 @@ export function HomePage() {
             <div className="product-spacer"></div>
 
             <div className="added-to-cart">
-              <img src="images/icons/checkmark.png" />
+              <img src={ CheckMark } />
               Added
             </div>
 
@@ -100,8 +101,8 @@ export function HomePage() {
             <div className="product-spacer"></div>
 
             <div className="added-to-cart">
-              <img src="images/icons/checkmark.png" />
-              Added
+              <img src={ CheckMark } />
+              Added 
             </div>
 
             <button className="add-to-cart-button button-primary">
@@ -149,8 +150,8 @@ export function HomePage() {
             <div className="product-spacer"></div>
 
             <div className="added-to-cart">
-              <img src="images/icons/checkmark.png" />
-              Added
+              <img src={ CheckMark } />
+              Added 
             </div>
 
             <button className="add-to-cart-button button-primary">
