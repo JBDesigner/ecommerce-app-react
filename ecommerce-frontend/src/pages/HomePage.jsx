@@ -1,15 +1,19 @@
 import { Header } from "../components/Header";
+import { useEffect,useState } from "react";
 import axios from "axios";
 import "./HomePage.css";
 import CheckMark from "../assets/images/icons/checkmark.png";
-import { products } from "../../starting-code/data/products.js";
 
 export function HomePage() {
+
+  const [products, setProducts] = useState([]);
+
   // Fetch products from the API
-  axios.get('http://localhost:3000/api/products')
-    .then((response) => {
-      console.log(response.data);
+  useEffect(() => {
+    axios.get("http://localhost:3000/api/products").then((response) => {
+      setProducts(response.data);
     });
+  }, []);
 
   return (
     <>
@@ -38,10 +42,14 @@ export function HomePage() {
                       product.rating.stars * 10
                     }.png`}
                   />
-                  <div className="product-rating-count link-primary">{product.rating.count}</div>
+                  <div className="product-rating-count link-primary">
+                    {product.rating.count}
+                  </div>
                 </div>
 
-                <div className="product-price">${((product.priceCents / 100)).toFixed(2)}</div>
+                <div className="product-price">
+                  ${(product.priceCents / 100).toFixed(2)}
+                </div>
 
                 <div className="product-quantity-container">
                   <select>
