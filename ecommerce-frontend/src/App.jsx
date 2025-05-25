@@ -5,7 +5,7 @@ import { OrdersPage } from "./pages/orders/OrdersPage";
 import "./App.css";
 import { TrackingPage } from "./pages/tracking/TrackingPage";
 import { Notfound } from "./pages/404/NotFoundPage";
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 function App() {
@@ -20,14 +20,13 @@ function App() {
 
     fetchAppData();
   }, []);
-  
 
   return (
     <Routes>
-      <Route index element={<HomePage cart={cart}/>} />
-      <Route path="checkout" element={<CheckoutPage cart={cart}/>} />
-      <Route path="orders" element={<OrdersPage cart={cart}/>} />
-      <Route path="tracking" element={<TrackingPage />} />
+      <Route index element={<HomePage cart={cart} />} />
+      <Route path="checkout" element={<CheckoutPage cart={cart} />} />
+      <Route path="orders" element={<OrdersPage cart={cart} />} />
+      <Route path="tracking" element={<TrackingPage cart={cart} />} />
       <Route path="*" element={<Notfound />} />
     </Routes>
   );
