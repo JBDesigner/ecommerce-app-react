@@ -22,6 +22,16 @@ export function CartItemDetails({ cartItem, loadCart }) {
     setQuantity(event.target.value);
   };
 
+  const handleQuantityKeyDown = (event) => {
+    const keyPressed = event.key;
+    if (keyPressed === "Enter") {
+      updateQuantity();
+    } else if (keyPressed === "Escape") {
+      setQuantity(cartItem.quantity);
+      setIsUpdatingQuantity(false);
+    }
+  };
+
   const deleteCartItem = async () => {
     await axios.delete(`/api/cart-items/${cartItem.productId}`);
     await loadCart();
@@ -43,6 +53,7 @@ export function CartItemDetails({ cartItem, loadCart }) {
                 type="text"
                 value={quantity}
                 onChange={updateQuantityInput}
+                onKeyDown={handleQuantityKeyDown}
                 className="input-update-quantity"
               />
             ) : (
