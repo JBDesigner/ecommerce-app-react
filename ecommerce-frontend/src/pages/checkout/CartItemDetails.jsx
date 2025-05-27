@@ -1,11 +1,22 @@
 import { formatMoney } from "../../utils/money";
 import axios from "axios";
+import { useState } from "react";
 
 export function CartItemDetails({ cartItem, loadCart }) {
-  const deleteCartItem = async() => {
+  const [isUpdatingQuantity, setIsUpdatingQuantity] = useState(false);
+
+  const updateQuantity = () => {
+    if (isUpdatingQuantity) {
+      setIsUpdatingQuantity(false);
+    } else {
+      setIsUpdatingQuantity(true);
+    }
+  };
+
+  const deleteCartItem = async () => {
     await axios.delete(`/api/cart-items/${cartItem.productId}`);
     await loadCart();
-  }
+  };
   return (
     <>
       <img className="product-image" src={cartItem.product.image} />
@@ -18,13 +29,24 @@ export function CartItemDetails({ cartItem, loadCart }) {
         <div className="product-quantity">
           <span>
             Quantity:
-            <input type="text" className="input-update-quantity"/>
-            <span className="quantity-label">{cartItem.quantity}</span>
+            {isUpdatingQuantity ? (
+              <input type="text" className="input-update-quantity" />
+            ) : (
+              <span className="quantity-label">{cartItem.quantity}</span>
+            )}
           </span>
-          <span className="update-quantity-link link-primary">Update</span>
-          <span className="delete-quantity-link link-primary"
+          <span
+            className="update-quantity-link link-primary"
+            onClick={updateQuantity}
+          >
+            Update
+          </span>
+          <span
+            className="delete-quantity-link link-primary"
             onClick={deleteCartItem}
-          >Delete</span>
+          >
+            Delete
+          </span>
         </div>
       </div>
     </>
