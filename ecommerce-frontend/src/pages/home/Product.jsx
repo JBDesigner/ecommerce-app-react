@@ -48,6 +48,7 @@ export function Product({ product, loadCart }) {
         <select
           value={quantity}
           onChange={selectQuantity}
+          data-testId="product-quantity-selector"
         >
           <option value="1">1</option>
           <option value="2">2</option>
@@ -69,7 +70,7 @@ export function Product({ product, loadCart }) {
         Added
       </div>
 
-      <button className="add-to-cart-button button-primary" onClick={addToCart}>
+      <button className="add-to-cart-button button-primary" data-testid="add-to-cart-button" onClick={addToCart}>
         Add to Cart
       </button>
     </div>

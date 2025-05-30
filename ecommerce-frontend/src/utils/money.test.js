@@ -12,4 +12,13 @@ describe("formatMoney", () => {
     expect(formatMoney(100000)).toBe("$1000.00");
     expect(formatMoney(1234567)).toBe("$12345.67");
   });
+
+  it("works with the number", () => {
+    expect(formatMoney(0)).toBe("$0.00");
+  });
+
+  it("works with negative numbers", () => {
+    expect(formatMoney(-999)).toBe("-$9.99");
+    expect(formatMoney(-100)).toBe("-$1.00");
+  });
 });
